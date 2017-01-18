@@ -1,0 +1,8 @@
+services:
+  - docker
+install:
+  - docker build -t docker-sails .
+  - docker run -it --rm -v $(pwd):/project_root docker-sails sails new
+script:
+  - docker run -di --name=sails-app -v $(pwd):/project_root -p 1337:1337 docker-sails sails lift --prod
+  - docker logs sails-app
