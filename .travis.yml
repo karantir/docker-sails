@@ -2,5 +2,6 @@ services:
   - docker
 install:
   - docker build -t docker-sails .
+  - mkdir project_root && cd project_root
   - docker run -it --rm -v $(pwd):/project_root docker-sails sails new
   - docker run -it -v $(pwd):/project_root -p 1337:1337 docker-sails sails lift --prod
